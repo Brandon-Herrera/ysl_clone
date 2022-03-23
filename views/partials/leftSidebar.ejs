@@ -1,0 +1,21 @@
+<div class="left-panel">
+    <h1><a href="">SAINT LAURENT</a></h1>
+    <ul data-level="1">
+        <% for (let i = 0; i < catsLevelFunc(1).length; i++) { %>
+            <% if (catsLevelFunc(1)[i]['ancestors'].indexOf('leftSidebar') !== -1 ) { %> 
+                <li>
+                    <button data-level="1" data-active="false"><%= catsLevelFunc(1)[i]['name'].toUpperCase() %></button>
+                    <div class="subnav" data-expanded="false">
+                        <ul data-level="2">
+                            <% for (let j = 0; j < catsLevelFunc(2).length; j++) { %> 
+                            <li>
+                                <button data-level="2"><%= catsLevelFunc(2)[i]['name'].toUpperCase() %> </button>
+                            </li>
+                            <% } %> 
+                        </ul>
+                    </div>
+                </li>
+            <% } %> 
+        <% } %> 
+    </ul>
+</div>
