@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const Category = require('./models/category');
 const dbUrl = 'mongodb://localhost:27017/ysl_v2';
 const port = 3000;
+// const loadDB = require('./classes/app_classes')
+const {LoadDB} = require('./classes/app_classes')
 
 mongoose.connect(dbUrl);
 
@@ -24,19 +26,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
 
-app.get('/', async (req, res) => {
-    const cats = await Category.find({});
-    const catsLevelFunc = (level, topCategory) => {
-        const l = level;
-        const topCat = topCategory;
 
-        return cats.filter(cat => cat['ancestors'].length === l);
-    };
-    res.render('home', {
-        cats,
-        catsLevelFunc,
-    });
-});
+app.get('/', async (req, res) => {
+    const firstLevelCategories = await new LoadDB().firstLevelCategories
+    const secondLevelCategories = await new LoadDB().secondLevelCategories
+
+    res.render('home', {firstLevelCategories, secondLevelCategories})
+})
 
 app.listen(port, () => {
     console.log(`Serving on port ${port}`);

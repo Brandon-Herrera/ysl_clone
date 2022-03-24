@@ -1,12 +1,10 @@
 <div class="right-panel">
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg" alt="">
-    <!-- <div class="panel-link-div" id="panel-link-div-right-1"> -->
         <ul data-level="1">
             <% for (let i = 8; i < 12; i++) { %>
                 <li>
-                    <button><%= catsLevelFunc(1)[i]['name'].toUpperCase() %></button>
+                    <button><%= firstLevelCategories[i]['name'].toUpperCase() %></button>
                 </li>
             <% } %> 
         </ul>
-    <!-- </div> -->
 </div>
