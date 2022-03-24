@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const Category = require('./models/category');
 const dbUrl = 'mongodb://localhost:27017/ysl_v2';
 const port = 3000;
-// const loadDB = require('./classes/app_classes')
 const {LoadDB} = require('./classes/app_classes')
 
 mongoose.connect(dbUrl);
