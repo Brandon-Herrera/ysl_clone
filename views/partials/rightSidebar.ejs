@@ -1,9 +1,9 @@
 <div class="right-panel">
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg" alt="">
         <ul data-level="1">
-            <% for (let i = 8; i < 12; i++) { %>
+            <% for (let i = 0; i < rightLevelOne.length; i++) { %>
                 <li>
-                    <button><%= firstLevelCategories[i]['name'].toUpperCase() %></button>
+                    <button><%= rightLevelOne[i]['name'].toUpperCase() %></button>
                 </li>
             <% } %> 
         </ul>

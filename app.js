@@ -25,12 +25,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
 
-
 app.get('/', async (req, res) => {
-    const firstLevelCategories = await new LoadDB().firstLevelCategories
-    const secondLevelCategories = await new LoadDB().secondLevelCategories
+    const leftLevelOne = await new LoadDB('leftSidebar', 1).findCategories()
+    const leftLevelTwo = await new LoadDB('leftSidebar', 2).findCategories()
+    const rightLevelOne = await new LoadDB('rightSidebar', 1).findCategories()
 
-    res.render('home', {firstLevelCategories, secondLevelCategories})
+    res.render('home', {
+        leftLevelOne,
+        leftLevelTwo,
+        rightLevelOne,
+    })
 })
 
 app.listen(port, () => {

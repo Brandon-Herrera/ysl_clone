@@ -1,14 +1,14 @@
 <div class="left-panel">
     <h1><a href="">SAINT LAURENT</a></h1>
     <ul data-level="1">
-        <% for (let i = 0; i < firstLevelCategories.length; i++) { %>
+        <% for (let i = 0; i < leftLevelOne.length; i++) { %>
             <li>
-                <button data-level="1" data-active="false"><%= firstLevelCategories[i]['name'].toUpperCase() %></button>
+                <button data-level="1" data-active="false"><%= leftLevelOne[i]['name'].toUpperCase() %></button>
                 <div class="subnav" data-expanded="false">
                     <ul data-level="2">
-                        <% for (let j = 0; j < secondLevelCategories.length; j++) { %> 
+                        <% for (let j = 0; j < leftLevelTwo.length; j++) { %> 
                         <li>
-                            <button data-level="2"><%= secondLevelCategories[i]['name'].toUpperCase() %> </button>
+                            <button data-level="2"><%= leftLevelTwo[i]['name'].toUpperCase() %> </button>
                         </li>
                         <% } %> 
                     </ul>
