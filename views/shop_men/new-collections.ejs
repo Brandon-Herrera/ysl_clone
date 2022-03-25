@@ -1,0 +1,31 @@
+<%- layout('layouts/boilerplate')  %>
+<%- block('head').append('<link rel="stylesheet" href="/stylesheets/newCollection.css">') %>
+<div class="center-panel">
+    <div class="product-grid">
+        <% for (let i = 0; i < newCollection.length; i++) { %>
+        <div class="product-preview">
+            <div class="product-preview-img-div">
+                <img src="<%= newCollection[i]['imgUrl'] %>" alt="">
+            </div>
+            <div class="prod-preview-info-div" id="info-div-1">
+                <div class="prod-preview-info-title">
+                    <h2 class="product-title"><%= newCollection[i]['title'].toUpperCase() %> </h2>
+                </div>
+                <div class="prod-preview-info-price">
+                    <% if (newCollection[i]['price'].toString().length > 3) { %> 
+                        <h2 class="product-price">$ <%= newCollection[i]['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); %> </h2>
+                    <% } else { %> 
+                        <h2 class="product-price">$ <%= newCollection[i]['price'] %> </h2>
+                    <% } %> 
+                </div>
+                <% if (newCollection[i]['isAvailable'] !== true) { %> 
+                    <div class="prod-preview-info-availability">
+                        <h2 class="product-availability"><%= newCollection[i]['isAvailable'].toUpperCase() %> </h2>
+                    </div>
+                <% } %> 
+            </div>
+            <a href=""></a>
+        </div>
+        <% } %> 
+    </div>
+</div>

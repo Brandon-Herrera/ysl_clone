@@ -8,6 +8,8 @@ const dbUrl = 'mongodb://localhost:27017/ysl_v2';
 const port = 3000;
 const {LoadDB} = require('./classes/app_classes')
 
+const newCollection = require('./seeds/shopMenCategoriesSeeds');
+
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -34,6 +36,20 @@ app.get('/', async (req, res) => {
         leftLevelOne,
         leftLevelTwo,
         rightLevelOne,
+    })
+})
+
+app.get('/shop-men/new-collections', async (req, res) => {
+    const leftLevelOne = await new LoadDB('leftSidebar', 1).findCategories()
+    const leftLevelTwo = await new LoadDB('leftSidebar', 2).findCategories()
+    const rightLevelOne = await new LoadDB('rightSidebar', 1).findCategories()
+
+
+    res.render('shop_men/new-collections', {
+        leftLevelOne,
+        leftLevelTwo,
+        rightLevelOne,
+        newCollection,
     })
 })
 
