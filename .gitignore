@@ -2,3 +2,6 @@
 /seeds
 /node_modules
 /trash
+/classes/square_class.js
+/classes/category_db_class.js
+/classes/app_classes.js
