@@ -37,15 +37,10 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/shop-men/new-collections', async (req, res) => {
-    const leftLevelOne = await new LoadDB('leftSidebar', 1).findCategories()
-    const leftLevelTwo = await new LoadDB('leftSidebar', 2).findCategories()
-    const rightLevelOne = await new LoadDB('rightSidebar', 1).findCategories()
-
+    const categories = new CategorySeedsClass(categorySeeds)
 
     res.render('shop_men/new-collections', {
-        leftLevelOne,
-        leftLevelTwo,
-        rightLevelOne,
+        categories,
         newCollection,
     })
 })
