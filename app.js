@@ -30,19 +30,36 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 
+const categories = new CategorySeedsClass(categorySeeds)
+
 app.get('/', async (req, res) => {
-    const categories = new CategorySeedsClass(categorySeeds)
 
     res.render('home', {categories})
 })
 
 app.get('/shop-men/new-collections', async (req, res) => {
-    const categories = new CategorySeedsClass(categorySeeds)
 
     res.render('shop_men/new-collections', {
         categories,
         newCollection,
     })
+})
+
+app.get('/shop-men/jacket', async (req, res) => {
+    // const test = new CategorySeedsClass(categorySeeds)
+    // console.log(test.filterCategories('leftSidebar', 3, 'accessories'))
+    // console.log(test.categoriesByLevel('leftSidebar', 3))
+
+
+    res.render('product_page', {
+        categories,
+        newCollection
+    })
+})
+
+
+app.get('/testing', async (req, res) => {
+    res.render('testing', {objClass})
 })
 
 app.listen(port, () => {

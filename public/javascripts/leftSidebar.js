@@ -1,56 +1,69 @@
 const leftPanel = document.querySelector('.left-panel')
 const firstLevelButtons = [...leftPanel.querySelectorAll('ul > li > button')]
 
-let activeButton = false
+const allButtons = [...leftPanel.querySelectorAll('button')]
 
-findChildren = (buttonClicked) => {
-    let relatedButtons = false
+let activeBtns = []
 
-    if (activeButton.attributes['data-level'].value === '1') {
-        const children = [...parent // active level 1 button
-        .nextElementSibling // the subnav div attached to that button (next element in html tree)
-        .children[0] // the ul of the subnav
-        .children]
-
-        for (i = 0; i < children.length; i++) {
-            if (children[i] === buttonClicked) {
-                relatedButtons = true
-            }
-        }
+class Button {
+    constructor(button) {
+        this.button = button
+        this.dataLevel = button.attributes['data-level'].value
+        this.dataActive = button.attributes['data-active'].value
     }
 
-    if (relatedButtons === true) {
-        buttonClicked.nextElementSibling.attributes['data-expanded'].value = 'true'
+    addActiveButton() {
+        activeBtns.push(this)
+    }
+
+    removeActiveButton() {
+        const index = activeBtns.indexOf(this)
+        activeBtns.splice(index, 1)
+    }
+
+    expand() {
+        this.button.nextElementSibling.attributes['data-expanded'].value = 'true'
+    }
+
+    contract() {
+        this.button.nextElementSibling.attributes['data-expanded'].value = 'false'
+    }
+
+    activate() {
+        this.button.attributes['data-active'].value = 'true'
+        this.dataActive = 'true'
+        this.expand()
+        this.addActiveButton()
+    }
+
+    deactivate() {
+        this.button.attributes['data-active'].value = 'false'
+        this.dataActive = 'false'
+        this.contract()
+        this.removeActiveButton()
     }
 }
 
 
-firstLevelButtons.forEach(
+allButtons.forEach(
     button => button.addEventListener('click', (event) => {
-        // if a level one button is active
-        if (!activeButton) {
-            const subnav = event.target.nextElementSibling
-            subnav.attributes['data-expanded'].value = 'true'
-            activeButton = button
-        // if active level one button is clicked again, close that open subnav
-        } else if (activeButton === button) {
-            activeButton.nextElementSibling.attributes['data-expanded'].value = 'false'
-            activeButton = false
-        } else if (activeButton && activeButton !== button) {
-            findChildren(button)
-        // if not button is active, open subnav of clicked button
-        } else {
-            activeButton.nextElementSibling.attributes['data-expanded'].value = 'false'
-            const subnav = event.target.nextElementSibling
-            subnav.attributes['data-expanded'].value = 'true'
-            activeButton = button
-        }
+        const btn = new Button(button)
 
-        // TODO: check if active button is level one and button clicked is level two of an active level one button
+        // if no button is active
+        if (!activeBtns.length) {
+            btn.activate()
+
+        // if clicked is already active
+        } else if (activeBtns.filter(e => e.button === btn.button).length) {
+            btn.deactivate()
+
+        // if clicked is same data-level as an already active button
+        } else if (activeBtns.filter(e => e.dataLevel === btn.dataLevel).length) {
+            activeBtns.filter(e => e.dataLevel === btn.dataLevel)[0].deactivate()
+            btn.activate()
+            
+        } else {
+            btn.activate()
+        }
     }
 ))
-
-
-// activeButton.attributes['data-level'].value === '1'
-
-// if there is a active button, and the button clicked is a sibling of the active button, open up the subnav of the active button and don't close the level one subnav

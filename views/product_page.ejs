@@ -1,0 +1,86 @@
+<%- layout('layouts/boilerplate')  %>
+<%- block('head').append('<link rel="stylesheet" href="/stylesheets/newCollection.css">') %>
+<div class="center-panel">
+    <div class="product-panel">
+        <div class="thumbnail-previews">
+            <div class="thumbnail">
+                <img src="<%= newCollection[0]['imgUrl'][0] %>" alt="">
+            </div>
+            <div class="thumbnail">
+                <img src="<%= newCollection[0]['imgUrl'][1] %>" alt="">
+            </div>
+        </div>
+        <div class="enlarged-product-panel">
+            <div class="enlarged-product-images">
+                <div><img src="<%= newCollection[0]['imgUrl'][0] %>" alt=""></div>
+                <div><img src="<%= newCollection[0]['imgUrl'][0] %>" alt=""></div>
+            </div>
+        </div>
+        <div class="product-description-panel">
+            <h1 class="product-title"><%= newCollection[0]['title'].toUpperCase() %> </h1>
+            <h2 class="product-price">$ <%= newCollection[0]['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') %> </h2>
+            <div class="product-description-div">
+                <p class="product-description"><%= newCollection[0]['description'].toUpperCase() %> </p>
+            </div>
+            <div class="product-extended-description-div">
+                <ul>
+                    <% for (let i = 0; i < newCollection[0]['extendedDescription'].length; i++) { %> 
+                        <li>&bull; <%= newCollection[0]['extendedDescription'][i] %></li>
+                    <% } %> 
+                </ul>
+            </div>
+            <h3 id="more-details-link">MORE DETAILS</h3>
+
+            <div class="color-div">
+                <div>
+                    <h3>COLOR:</h3>
+                    <p>NOIR OR</p>
+                    <div class="color-block">
+                        <div class="color-block-inner"></div>
+                    </div>
+                </div>
+                <div>
+                    <a href="">OTHER STYLES ></a>
+                </div>
+            </div>
+
+            <div class="size-div">
+                <div>
+                    <h3>YSL SIZE</h3>
+                    <a href="">SIZE GUIDE ></a>
+                </div>
+                <div class="dropdown">
+                    <h3>SELECT SIZE</h3>
+                    <div class="dropdown-svgs">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14l-6-6z"/></svg>
+                    </div>
+                </div>
+                <div class="dropdown-div">
+                    <div>SELECT SIZE</div>
+                    <% for (let i = 0; i < newCollection[0]['sizes'].length; i++) {%>
+                        <% if (newCollection[0]['sizes'][i]['isAvailable'] === true) { %> 
+                            <div><%= newCollection[0]['sizes'][i]['size']%></div>
+                        <% } else { %>
+                            <div><%= newCollection[0]['sizes'][i]['size']%> - <%= newCollection[0]['sizes'][i]['isAvailable'].toUpperCase()%></div> 
+                        <% } %> 
+                    <% } %> 
+                </div>
+            </div>
+
+            <h3>AVERAGE DELIVERY TIME: 3-6 BUSINESS DAYS</h3>
+            <button class="add-to-cart-btn">ADD TO CART</button>
+
+            <h3>FIND IN STORE ></h3>
+            <h3>SHIPPING AND RETURNS ></h3>
+
+            <div class="contact-icons-div">
+                <svg xmlns="http://www.w3.org/2000/svg" height="17px" viewBox="0 0 24 24" width="17px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="17px" viewBox="0 0 24 24" width="17px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6.54 5c.06.89.21 1.76.45 2.59l-1.2 1.2c-.41-1.2-.67-2.47-.76-3.79h1.51m9.86 12.02c.85.24 1.72.39 2.6.45v1.49c-1.32-.09-2.59-.35-3.8-.75l1.2-1.19M7.5 3H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.49c0-.55-.45-1-1-1-1.24 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.45-5.15-3.76-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="17px" viewBox="0 0 24 24" width="17px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/productPage.js"></script>

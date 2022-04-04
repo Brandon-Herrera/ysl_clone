@@ -1,10 +1,12 @@
-<div class="right-panel">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg" alt="">
-        <ul data-level="1">
-            <% for (let i = 0; i < categories.filterCategories('rightSidebar', 1, 'rightSidebar').length; i++) { %>
-                <li>
-                    <button><%= categories.filterCategories('rightSidebar', 1, 'rightSidebar')[i]['name'].toUpperCase() %></button>
-                </li>
-            <% } %> 
-        </ul>
+<div class="right-panel-wrapper">
+    <div class="right-panel">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg" alt="">
+            <ul data-level="1">
+                <% for (let i = 0; i < categories.filterCategories('rightSidebar', 1, 'rightSidebar').length; i++) { %>
+                    <li>
+                        <button><%= categories.filterCategories('rightSidebar', 1, 'rightSidebar')[i]['name'].toUpperCase() %></button>
+                    </li>
+                <% } %> 
+            </ul>
+    </div>
 </div>

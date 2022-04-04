@@ -5,11 +5,9 @@ body {
 
 .body-wrapper {
     display: grid;
-    /* grid-template-columns: repeat(3, 1fr); */
-    grid-template-columns: 250px calc(100vw - 500px) 250px;
+    grid-template-columns: 250px calc(100vw - 450px) 200px;
     height: 100vh;
     width: 100vw;
-    /* position: relative; */
     margin: 0;
 }
 
@@ -39,8 +37,6 @@ body {
     border-image-repeat: stretch;
 }
 
-/* .main-img-link-div > h2,
-.main-img-link-div > a { */
 .main-img-div > h2,
 .main-img-div > a {
     margin: 0;
@@ -49,13 +45,11 @@ body {
     line-height: 10px;
 }
 
-/* .main-img-link-div > h2 { */
 .main-img-div > h2 {
     font-size: 22px;
     line-height: 15px;
 }
 
-/* .main-img-link-div > a { */
 .main-img-div > a {
     font-size: 10px;
 }

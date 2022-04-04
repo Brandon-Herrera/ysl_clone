@@ -1,24 +1,35 @@
-.left-panel > ul,
-ul[data-level="2"] > li,
-.right-panel > ul {
+ul, li {
     list-style-type: none;
+    list-style-position: inside;
     padding: 0;
+    margin: 0;
+    line-height: 12px;
 }
 
-.left-panel > ul > li > button,
-ul[data-level="2"] > li > button,
-.right-panel > ul > li > button
+ul[data-level="2"],
+ul[data-level="3"],
+ul[data-level="4"],
+ul[data-level="5"],
+ul[data-level="6"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ul[data-level="3"] > li,
+ul[data-level="4"] > li {
+    text-align: right;
+}
+
+button
  {
     outline: none;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
+    font-size: 10px;
+    margin: 0;
 }
-
-/* ul[data-level="2"] {
-    position: absolute;
-} */
 
 .subnav[data-expanded="false"] {
     visibility: hidden;
@@ -30,18 +41,16 @@ ul[data-level="2"] > li > button,
     position: relative;
 }
 
-/*  */
-
-
 .left-panel {
     grid-column: 1 / 2;
     padding-top: 10%;
     padding-left: 7.5%;
+    position: sticky;
+    top: 0;
 }
 
 .left-panel > h1 {
-    font-size: 25px;
-    margin-bottom: 15%;
+    margin-bottom: 7.5%;
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
@@ -50,52 +59,9 @@ ul[data-level="2"] > li > button,
 .left-panel > h1 > a {
     text-decoration: none;
     color: black;
+    font-size: 25px;
+    font-weight: bold;
 }
-
-/* .panel-link-div {
-    margin-bottom: 25px;
-    line-height: 10px;
-}
-
-.left-panel > div:last-of-type > ul {
-    list-style-type: square;
-    list-style-position: inside;
-    padding-left: 0;
-}
-
-.panel-link-div > h2,
-#expandedIDLeft > h2,
-#exapndedIDRight > h2 {
-    margin: 0;
-    padding: 0;
-    font-size: 11px;
-    text-decoration: none;
-    color: black;
-    line-height: 1px;
-    font-weight: lighter;
-}
-
-.panel-link-div > h2:hover {
-    cursor: pointer;
-}
-
-#expandedIDLeft > h2,
-#expandedIDRight > h2 {
-    margin: 0;
-    padding: 0;
-    font-size: 11px;
-    text-decoration: none;
-    color: black;
-    line-height: 11px;
-    font-weight: lighter;
-}
-
-#expandedIDLeft, #expandedIDRight {
-    margin-top: 20px;
-    margin-bottom: 10px;
-} */
-
-
 
 .right-panel {
     grid-column: 3 / 4;
@@ -104,6 +70,8 @@ ul[data-level="2"] > li > button,
     align-items: end;
     padding-top: 10%;
     padding-right: 7.5%;
+    position: sticky;
+    top: 0;
 }
 
 .right-panel > img {
